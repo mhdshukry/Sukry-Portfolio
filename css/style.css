@@ -257,7 +257,7 @@ ul {
   }
 
   .navbar {
-    position: fixed;
+    position: relative;
     justify-content: center;
     padding: 15px 20px;
   }
