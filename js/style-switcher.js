@@ -1,46 +1,41 @@
-// Toggle style switcher
-const styleSwitcherToggle = document.querySelector(".style-switcher-toggler");
-styleSwitcherToggle.addEventListener("click", () => {
-  document.querySelector(".style-switcher").classList.toggle("open");
-});
+const themeToggle = document.querySelector('.theme-toggle');
+const body = document.body;
 
-// Hide style-switcher
-window.addEventListener("mousewheel", () => {
-  if (document.querySelector(".style-switcher").classList.contains("open")) {
-    document.querySelector(".style-switcher").classList.remove("open");
+const sunIcon = document.querySelector('.sun-icon');
+const moonIcon = document.querySelector('.moon-icon');
+const dayEffect = document.querySelector('.day-effect');
+const nightEffect = document.querySelector('.night-effect');
+
+// Setup function to handle icon/effect visibility
+function updateThemeState() {
+  if (body.classList.contains('dark')) {
+    // Night Mode (Dark)
+    sunIcon.style.transform = 'scale(0)';
+    sunIcon.style.opacity = '0';
+
+    moonIcon.style.transform = 'scale(1)';
+    moonIcon.style.opacity = '1';
+
+    dayEffect.style.display = 'none';
+    nightEffect.style.display = 'block';
+  } else {
+    // Day Mode (Light)
+    sunIcon.style.transform = 'scale(1)';
+    sunIcon.style.opacity = '1';
+
+    moonIcon.style.transform = 'scale(0)';
+    moonIcon.style.opacity = '0';
+
+    dayEffect.style.display = 'block';
+    nightEffect.style.display = 'none';
   }
-});
-
-window.addEventListener("touchmove", () => {
-  if (document.querySelector(".style-switcher").classList.contains("open")) {
-    document.querySelector(".style-switcher").classList.remove("open");
-  }
-});
-
-// Theme colors
-const alternateStyle = document.querySelectorAll(".alternate-style");
-function setActiveStyle(color) {
-  alternateStyle.forEach((style) => {
-    if (color === style.getAttribute("title")) {
-      style.removeAttribute("disabled");
-    } else {
-      style.setAttribute("disabled", "true");
-    }
-  });
 }
 
-// Theme light and dark mode
-const dayNight = document.querySelector(".day-night");
-dayNight.addEventListener("click", () => {
-  dayNight.querySelector("i").classList.toggle("fa-sun");
-  dayNight.querySelector("i").classList.toggle("fa-moon");
-  document.body.classList.toggle("dark");
-});
+// Initial check on page load
+window.addEventListener('load', updateThemeState);
 
-window.addEventListener("load", () => {
-  if (document.body.classList.contains("dark")) {
-    dayNight.querySelector("i").classList.add("fa-sun");
-  } else {
-    dayNight.querySelector("i").classList.add("fa-moon");
-  }
+// Toggle theme on click
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark');
+  updateThemeState();
 });

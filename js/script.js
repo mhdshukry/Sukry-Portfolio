@@ -12,31 +12,31 @@ var typed = new Typed(".typing", {
   loop: true,
 });
 
-// Navigation Scroll
-document.querySelectorAll('.nav a').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-    updateNav(this);
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav a');
+
+// Add scroll event listener
+window.addEventListener('scroll', () => {
+  let currentSection = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100; // Offset for better accuracy
+    const sectionHeight = section.clientHeight;
+
+    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+      currentSection = section.getAttribute('id');
+    }
+  });
+
+  // Update nav links
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href').substring(1) === currentSection) {
+      link.classList.add('active');
+    }
   });
 });
 
-function updateNav(element) {
-  document.querySelectorAll('.nav a').forEach(navLink => {
-    navLink.classList.remove('active');
-  });
-  element.classList.add('active');
-}
-
-// For Hire me section
-document.querySelector(".hire-me").addEventListener("click", function () {
-  document.querySelector("#contact").scrollIntoView({
-    behavior: "smooth",
-  });
-  updateNav(this);
-});
 
 
 function toggleMenu() {
