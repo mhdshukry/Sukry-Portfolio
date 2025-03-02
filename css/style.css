@@ -1180,4 +1180,16 @@ h3.my-profession {
 }
 
 
+@media (max-width: 768px) {
+
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+}
+
+
+
 /* Footer End */
