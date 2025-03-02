@@ -3,8 +3,8 @@
   position: fixed;
   top: 100px;
   right: 20px;
-  width: 50px !important;
-  height: 50px !important;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,8 +17,8 @@
   .theme-toggle {
     top: 100px;
     right: 20px;
-    width: 30px !important;
-    height: 30px !important;
+    width: 60px;
+    height: 60px;
   }
 }
 
